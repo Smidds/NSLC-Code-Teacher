@@ -8,12 +8,16 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "mock-data": "node mock/generate"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.0",
-    "quasar": "^1.0.0-beta.0"
+    "faker": "^4.1.0",
+    "json-schema-faker": "^0.5.0-rc16",
+    "quasar": "^1.0.0-beta.0",
+    "standard": "^12.0.1"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0-beta.0",
