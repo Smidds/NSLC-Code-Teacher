@@ -1,13 +1,18 @@
-
-const routes = [
+const routes = [{
+  path: '/',
+  component: () => import('layouts/MyLayout.vue'),
+  children: [{
+    path: 'step/:chapterIndex/:pageIndex',
+    component: () => import('pages/Page.vue'),
+    meta: {
+      requiresStepCheck: true
+    }
+  },
   {
-    path: '/',
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
-  }
-]
+    path: '',
+    redirect: 'step/0/0'
+  }]
+}]
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
