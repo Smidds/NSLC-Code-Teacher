@@ -18,7 +18,8 @@
     "json-schema-faker": "^0.5.0-rc16",
     "node-sass": "^4.12.0",
     "quasar": "^1.0.0-beta.0",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "vue2-ace-editor": "^0.0.13"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0-beta.0",

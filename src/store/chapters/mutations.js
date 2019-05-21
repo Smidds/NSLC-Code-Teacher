@@ -10,11 +10,14 @@ function isStepNewer (oldStep, newStep) {
 }
 
 export function setStep (state, step) {
-  if (isStepNewer(state.currentStep, step)) {
+  console.log('==  Setting step  ==')
+  if (isStepNewer(state.furthestStep, step)) {
+    console.log('Step is farther')
     localStorage.setItem('farthestStep', step)
-    state.farthestStep = step
+    state.furthestStep = step
   }
 
+  console.log('Setting current Step')
   localStorage.setItem('currentStep', step)
   state.currentStep = step
 }
