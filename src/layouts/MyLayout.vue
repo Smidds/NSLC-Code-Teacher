@@ -22,8 +22,9 @@
           :key="chpIndex"
           group="chapters"
           :label="chapter.title"
-          :default-opened="chpIndex === 0 ? true : false"
           expand-separator
+          :ref="`${chapterRefBase}${chpIndex}`"
+          :default-opened="chpIndex === Number(currentChapterIndex)"
         >
           <q-btn
             v-for="(page, pgIndex) in chapter.pages"
@@ -54,7 +55,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      drawer: false
+      drawer: false,
+      chapterRefBase: 'chapterButton-'
     }
   },
   computed: {
@@ -86,6 +88,12 @@ export default {
           return 'primary'
         }
       }
+    }
+  },
+  watch: {
+    currentChapterIndex: function (newIndex, oldIndex) {
+      this.$refs[`${this.chapterRefBase}${oldIndex}`][0].toggle()
+      this.$refs[`${this.chapterRefBase}${newIndex}`][0].toggle()
     }
   }
 }

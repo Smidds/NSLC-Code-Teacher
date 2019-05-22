@@ -38,8 +38,8 @@ int main()
       'instructions': 'Voluptas facere quam nam aliquid itaque est consequatur. Autem voluptatem fugiat consequuntur velit dolor. Neque eligendi a vitae quam. Velit sit amet asperiores sit porro fuga et consequatur. Iure quidem dicta dolores et. Vel eum eligendi error nihil.\n \rNon inventore tempore repudiandae unde aliquid iure voluptatem ut. Consectetur officiis voluptatem blanditiis dignissimos. Autem fugit ut dicta hic nihil sit et. Quos debitis occaecati optio voluptatem sit error aliquid distinctio eum. Sit est quia corporis animi. Ut commodi at dolore.\n \rConsequatur optio dolorem. Dolor vitae est alias enim. Quasi eos est. Est quaerat enim est corporis quia aliquid ea. Voluptatem fugit est ex laudantium deleniti cumque. Enim qui aut ullam illum.'
     }]
   }],
-  currentStep: [0, 2],
-  furthestStep: [0, 2]
+  currentStep: [1, 0],
+  furthestStep: [1, 0]
 }
 
 export default state

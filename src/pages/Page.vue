@@ -48,8 +48,8 @@ export default {
   },
   methods: {
     ...mapActions('chapters', [
-      'getNextPage',
-      'getPrevPage'
+      'loadNextPage',
+      'loadPrevPage'
     ]),
     editorInit: function () {
       require('brace/ext/language_tools')
@@ -57,7 +57,7 @@ export default {
       require('brace/theme/tomorrow')
     },
     nextPage () {
-      this.getNextPage(this.currentStep).then(nextPage => {
+      this.loadNextPage(this.currentStep).then(nextPage => {
         if (nextPage) {
           this.$router.push(`/step/${nextPage[0]}/${nextPage[1]}`)
         }
@@ -66,7 +66,7 @@ export default {
       })
     },
     prevPage () {
-      this.getPrevPage(this.currentStep).then(prevPage => {
+      this.loadPrevPage(this.currentStep).then(prevPage => {
         if (prevPage) {
           this.$router.push(`/step/${prevPage[0]}/${prevPage[1]}`)
         }

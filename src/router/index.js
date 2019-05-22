@@ -24,9 +24,8 @@ export default function ({ store }) {
 
   Router.beforeEach(async (to, from, next) => {
     if (to.matched.some(record => record.meta.requiresStepCheck)) {
-      console.log('==  Checking Route  ==')
-      // var chapterIndex = store.state.chapters.currentStep[0]
-      // var pageIndex = store.state.chapters.currentStep[1]
+      var chapterIndex = store.state.chapters.currentStep[0]
+      var pageIndex = store.state.chapters.currentStep[1]
       var routeChapterIndex = to.params.chapterIndex
       var routePageIndex = to.params.pageIndex
 
@@ -34,11 +33,10 @@ export default function ({ store }) {
       var valid = await store.dispatch('chapters/isValidStep', toStep)
 
       if (valid) {
-        store.commit('chapters/setStep', toStep)
+        store.commit('chapters/updateCurrentStep', toStep)
         next()
       } else {
-        console.log('Invalid!')
-        next(`/step/${0}/${0}/`)
+        next(`/step/${chapterIndex}/${pageIndex}/`)
       }
     } else {
       next()

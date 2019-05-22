@@ -5,9 +5,6 @@
  * @param {Array<number>} step The step array to test
  */
 export function isValidStep ({ state }, step) {
-  console.log('===   isValidStep   ===')
-  console.log('  I think the following:')
-  console.log(`    currentStep: ${state.currentStep}, furthestStep: ${state.furthestStep}`)
   var furthestChapter = state.furthestStep[0]
   var furthestPage = state.furthestStep[1]
   var testChapter = step[0]
@@ -24,14 +21,14 @@ export function isValidStep ({ state }, step) {
  * @param {Object} state The chapter state
  * @param {Array<number>} step The step to get the next page of
  */
-export async function getNextPage ({ state, commit }, step) {
+export async function loadNextPage ({ state, commit }, step) {
   if (!hasNextPage({ state }, step)) {
     return null
   }
 
-  let chapterIndex = step[0]
-  let pageIndex = step[1]
-  let pagesInChapter = state.chapters[chapterIndex].length
+  let chapterIndex = Number(step[0])
+  let pageIndex = Number(step[1])
+  let pagesInChapter = state.chapters[chapterIndex].pages.length
 
   if (pageIndex + 1 === pagesInChapter) {
     pageIndex = 0
@@ -42,33 +39,31 @@ export async function getNextPage ({ state, commit }, step) {
 
   let newPage = [chapterIndex, pageIndex]
 
-  await commit('setStep', newPage)
+  await commit('updateFurthestStep', newPage)
   return newPage
 }
 
 /**
  * Get the previous page before a given step
- * @param {Vuex Context} context Provided by Vuex
+ * @param {Object} context Chapters state object
  * @param {Array<number>} step The step to get the previous page of
  */
-export async function getPrevPage ({ state, commit }, step) {
+export function loadPrevPage ({ state }, step) {
   if (!hasPrevPage(undefined, step)) {
     return null
   }
 
-  let chapterIndex = step[0]
-  let pageIndex = step[1]
+  let chapterIndex = Number(step[0])
+  let pageIndex = Number(step[1])
 
   if (pageIndex === 0) {
     chapterIndex--
+    pageIndex = state.chapters[chapterIndex].pages.length - 1
   } else {
     pageIndex--
   }
 
-  let prevPage = [chapterIndex, pageIndex]
-
-  await commit('setStep', prevPage)
-  return prevPage
+  return [chapterIndex, pageIndex]
 }
 
 /**
