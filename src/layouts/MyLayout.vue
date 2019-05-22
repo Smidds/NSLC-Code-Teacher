@@ -92,8 +92,8 @@ export default {
   },
   watch: {
     currentChapterIndex: function (newIndex, oldIndex) {
-      this.$refs[`${this.chapterRefBase}${oldIndex}`][0].toggle()
-      this.$refs[`${this.chapterRefBase}${newIndex}`][0].toggle()
+      this.$refs[`${this.chapterRefBase}${oldIndex}`][0].hide()
+      this.$refs[`${this.chapterRefBase}${newIndex}`][0].show()
     }
   }
 }

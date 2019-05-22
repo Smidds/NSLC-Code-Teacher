@@ -4,7 +4,7 @@
     <div class="row">
       <div id="code" class="col-6 q-pa-md">
         <h3>Code:</h3>
-        <editor ref="codeEditor" v-model="currentPage.code" @init="editorInit" lang="c_cpp" theme="tomorrow" height="300px" width="100%" />
+        <editor ref="codeEditor" v-model="editorCode" @init="editorInit" lang="c_cpp" theme="tomorrow" height="300px" width="100%" />
       </div>
       <div id="instructions" class="col-6 q-pa-md">
         <h3>Instructions:</h3>
@@ -36,6 +36,11 @@ export default {
   name: 'PageView',
   components: {
     editor: require('vue2-ace-editor')
+  },
+  data () {
+    return {
+      editorCode: ''
+    }
   },
   computed: {
     ...mapGetters('chapters', [
@@ -98,10 +103,14 @@ export default {
     }
   },
   mounted () {
+    this.editorCode = this.currentPage.code.slice(0)
     let editor = this.$refs.codeEditor.editor
 
     editor.setReadOnly(true)
     editor.setFontSize(25)
+  },
+  beforeUpdate () {
+    this.editorCode = this.currentPage.code.slice(0)
   }
 }
 </script>
