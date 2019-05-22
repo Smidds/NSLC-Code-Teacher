@@ -1,6 +1,6 @@
 var state = {
   'chapters': [{
-    'title': 'distinctio qui nobis',
+    'title': 'The Basics',
     'pages': [{
       'title': 'Classic Hello World',
       'code': `#include <iostream>
@@ -11,15 +11,23 @@ int main()
     cout << "Hello, World!";
     return 0;
 }`,
-      'instructions': 'Hello world is a class. To do it, just complete the code to the left!'
+      'instructions': 'Hello world is a <em>simple introduction</em>. To do it, <strong>just complete the code to the left!</strong>'
     }, {
-      'title': 'sit consequatur error',
-      'code': 'printf("Hello World!");',
-      'instructions': 'Eveniet quae sed voluptates maiores hic autem et. Quibusdam est et voluptatibus vel est voluptas et et aut. Sint tempore nulla ex sed possimus similique. Corporis ut aliquam molestiae quibusdam.\n \rEveniet sequi consequatur neque recusandae. Doloribus consequatur tempora aut magnam. Dolorem et distinctio enim vero error ut aliquid. Dolor sequi quae ad fuga laborum impedit qui est. Placeat sed sunt non architecto aperiam.\n \rOptio placeat ipsam eaque ullam id dolor. Ipsum excepturi recusandae veniam nesciunt magnam facere. Molestiae recusandae veritatis.'
+      'title': 'Variables',
+      'code': `int counter = 0;
+String hello = "Hello World!";
+bool isGitaCool = true;
+Servo testServo = new Servo();`,
+      'instructions': 'Variables are a fundamental pillar of programming. Listed in the code block are a few of the core types of variables, as well as an example of what\'s known as an Object, in this case called "Servo". An object is a way of describing a type of thing, like a Cat or a Dog, and making new kinds of those things is triggered with the "new" keyword, like "new Servo()", or "new Dog()". Don\'t worry if this is confusing, you just need to understand the high level of it, that\'s all!'
     }, {
-      'title': 'architecto ut deleniti',
-      'code': 'printf("Hello World!");',
-      'instructions': 'Ea in ea consequatur facere esse. Qui tempora porro harum odit itaque veniam. Atque sed natus suscipit assumenda aut non. Consequatur enim ea ut placeat. Voluptatem exercitationem odio sunt rerum dolor soluta. Et iure assumenda.\n \rQuo quidem ut et perferendis sit. Ratione ut dolorem adipisci aspernatur nam. Quod mollitia et facilis possimus et molestiae illo. Perferendis consectetur dolor ab tenetur et odit laudantium deleniti.\n \rNihil culpa labore veniam error aut quos ad itaque molestiae. Odit placeat dolores incidunt quia et modi nostrum magni rerum. Culpa ullam saepe vero sunt alias repellendus tenetur sint. Nostrum autem in in.'
+      'title': 'Arithmetic Operations',
+      'code': `int four = 2 + 2;
+double oneHalf = 0.25 + 0.25;
+int bigNumber = 1000 * 1000;
+if (2 + 2 == 4) {
+  printf("2 + 2 is 4! Who knew?");
+}`,
+      'instructions': 'In order to do any arthmetic operation, you just need to use the math operators you\'re familiar with, and optionally assign them to another variable, or use the value to perform other work such as check a value or trigger an event.'
     }, {
       'title': 'et dolorum non',
       'code': 'printf("Hello World!");',
@@ -38,8 +46,8 @@ int main()
       'instructions': 'Voluptas facere quam nam aliquid itaque est consequatur. Autem voluptatem fugiat consequuntur velit dolor. Neque eligendi a vitae quam. Velit sit amet asperiores sit porro fuga et consequatur. Iure quidem dicta dolores et. Vel eum eligendi error nihil.\n \rNon inventore tempore repudiandae unde aliquid iure voluptatem ut. Consectetur officiis voluptatem blanditiis dignissimos. Autem fugit ut dicta hic nihil sit et. Quos debitis occaecati optio voluptatem sit error aliquid distinctio eum. Sit est quia corporis animi. Ut commodi at dolore.\n \rConsequatur optio dolorem. Dolor vitae est alias enim. Quasi eos est. Est quaerat enim est corporis quia aliquid ea. Voluptatem fugit est ex laudantium deleniti cumque. Enim qui aut ullam illum.'
     }]
   }],
-  currentStep: [1, 0],
-  furthestStep: [1, 0]
+  currentStep: null,
+  furthestStep: null
 }
 
 export default state

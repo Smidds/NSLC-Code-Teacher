@@ -9,16 +9,23 @@ function isStepNewer (oldStep, newStep) {
           oldPage < newPage)
 }
 
+export function setSteps (state, { furthestStep, currentStep }) {
+  state.furthestStep = furthestStep
+  state.currentStep = currentStep
+}
+
 export function updateFurthestStep (state, step) {
   let cleanStep = [Number(step[0]), Number(step[1])]
   if (isStepNewer(state.furthestStep, cleanStep)) {
-    localStorage.setItem('furthestStep', cleanStep)
+    localStorage.setItem('furthestChapter', cleanStep[0])
+    localStorage.setItem('furthestPage', cleanStep[1])
     state.furthestStep = cleanStep
   }
 }
 
 export function updateCurrentStep (state, step) {
   let cleanStep = [Number(step[0]), Number(step[1])]
-  localStorage.setItem('currentStep', cleanStep)
+  localStorage.setItem('currentChapter', cleanStep[0])
+  localStorage.setItem('currentPage', cleanStep[1])
   state.currentStep = cleanStep
 }

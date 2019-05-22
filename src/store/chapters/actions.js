@@ -67,17 +67,44 @@ export function loadPrevPage ({ state }, step) {
 }
 
 /**
+ * Attempt to load stepping state. If no step is found in localStorage,
+ * default is set to [0, 0]
+ * @param {Object} state` Chapter state
+ */
+export function loadStepState ({ state, commit }) {
+  let savedFurthest = [
+    Number(localStorage.getItem('furthestChapter')),
+    Number(localStorage.getItem('furthestPage'))
+  ]
+  let savedCurrent = [
+    Number(localStorage.getItem('currentChapter')),
+    Number(localStorage.getItem('currentPage'))
+  ]
+
+  if (!savedFurthest) {
+    savedFurthest = [0, 0]
+  }
+
+  if (!savedCurrent) {
+    state.currentStep = [0, 0]
+  }
+
+  commit('setSteps', { furthestStep: savedFurthest, currentStep: savedCurrent })
+}
+
+/**
  * Check if the specified step has a next page, or is at the end
  * @param {Vuex Context} context State context
  * @param {Array<number>} step The step to check if it has a next page
  */
 function hasNextPage ({ state }, step) {
+  let chapters = state.chapters
   let chapterIndex = step[0]
   let pageIndex = step[1]
-  let furthestChapterIndex = state.furthestStep[0]
-  let furthestPageIndex = state.furthestStep[1]
+  let maxChapterIndex = chapters.length - 1
+  let maxPageIndex = chapters[maxChapterIndex].pages.length - 1
 
-  if (chapterIndex === furthestChapterIndex && pageIndex === furthestPageIndex) {
+  if (chapterIndex === maxChapterIndex && pageIndex === maxPageIndex) {
     return false
   } else {
     return true

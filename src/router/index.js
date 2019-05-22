@@ -23,24 +23,34 @@ export default function ({ store }) {
   })
 
   Router.beforeEach(async (to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresStepCheck)) {
-      var chapterIndex = store.state.chapters.currentStep[0]
-      var pageIndex = store.state.chapters.currentStep[1]
-      var routeChapterIndex = to.params.chapterIndex
-      var routePageIndex = to.params.pageIndex
+    let chapterState = store.state.chapters
 
-      var toStep = [routeChapterIndex, routePageIndex]
-      var valid = await store.dispatch('chapters/isValidStep', toStep)
+    if (!chapterState.furthestStep || !chapterState.currentStep) {
+      await store.dispatch('chapters/loadStepState')
+    }
+
+    if (to.matched.some(record => record.meta.requiresStepCheck)) {
+      let chapterIndex = chapterState.currentStep[0]
+      let pageIndex = chapterState.currentStep[1]
+      let routeChapterIndex = to.params.chapterIndex
+      let routePageIndex = to.params.pageIndex
+
+      let toStep = [routeChapterIndex, routePageIndex]
+
+      console.log(`toStep: [${toStep}]`)
+
+      let valid = await store.dispatch('chapters/isValidStep', toStep)
 
       if (valid) {
         store.commit('chapters/updateCurrentStep', toStep)
-        next()
+        return next()
       } else {
-        next(`/step/${chapterIndex}/${pageIndex}/`)
+        console.log('invalid!')
+        return next(`/step/${chapterIndex}/${pageIndex}/`)
       }
-    } else {
-      next()
     }
+
+    return next()
   })
 
   return Router

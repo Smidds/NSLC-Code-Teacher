@@ -8,7 +8,7 @@
       </div>
       <div id="instructions" class="col-6 q-pa-md">
         <h3>Instructions:</h3>
-        <p class="text-body1">{{ currentPage.instructions }}</p>
+        <p class="text-body1" v-html="currentPage.instructions"></p>
       </div>
     </div>
     <div class="row justify-between full-width">
@@ -80,12 +80,13 @@ export default {
       })
     },
     hasNextPage () {
+      let chapters = this.$store.state.chapters.chapters
       let chapterIndex = this.currentStep[0]
       let pageIndex = this.currentStep[1]
-      let furthestChapterIndex = this.furthestStep[0]
-      let furthestPageIndex = this.furthestStep[1]
+      let maxChapterIndex = chapters.length - 1
+      let maxPageIndex = chapters[maxChapterIndex].pages.length - 1
 
-      if (chapterIndex === furthestChapterIndex && pageIndex === furthestPageIndex) {
+      if (chapterIndex === maxChapterIndex && pageIndex === maxPageIndex) {
         return false
       } else {
         return true
