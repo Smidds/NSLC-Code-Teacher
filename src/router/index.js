@@ -37,15 +37,12 @@ export default function ({ store }) {
 
       let toStep = [routeChapterIndex, routePageIndex]
 
-      console.log(`toStep: [${toStep}]`)
-
       let valid = await store.dispatch('chapters/isValidStep', toStep)
 
       if (valid) {
         store.commit('chapters/updateCurrentStep', toStep)
         return next()
       } else {
-        console.log('invalid!')
         return next(`/step/${chapterIndex}/${pageIndex}/`)
       }
     }

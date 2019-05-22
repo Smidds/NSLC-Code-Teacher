@@ -1,10 +1,10 @@
 {
-  "name": "quasar-test",
-  "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "name": "NSLC Arduino Teacher",
+  "version": "1.0.0",
+  "description": "A web app to help teach Arduino at the NSLC Biotech camp",
+  "productName": "NSLC Arduino Teacher",
   "cordovaId": "org.cordova.quasar.app",
-  "author": "Smidds <isaachsmith.dev@gmail.com>",
+  "author": "Isaac Smith <isaachsmith.dev@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",

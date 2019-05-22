@@ -22,8 +22,6 @@ module.exports = function (ctx) {
     ],
 
     framework: {
-      // all: true, // --- includes everything; for dev only!
-
       components: [
         'QLayout',
         'QHeader',
@@ -51,9 +49,6 @@ module.exports = function (ctx) {
       plugins: [
         'Notify'
       ]
-
-      // iconSet: 'ionicons-v4'
-      // lang: 'de' // Quasar language
     },
 
     supportIE: false,
@@ -92,9 +87,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'NSLC Arduino Teacher',
+        short_name: 'Arduino Teacher',
+        description: 'Web app for teaching Arduino to students the NSLC Biotechnology summer camp.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
