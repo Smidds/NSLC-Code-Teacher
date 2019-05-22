@@ -1,5 +1,5 @@
 <template>
-  <div class="q-ma-lg">
+  <div class="q-ma-xl">
     <h1>{{ currentPage.title }}</h1>
     <div class="row">
       <div id="code" class="col-6 q-pa-md">

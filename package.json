@@ -1,8 +1,8 @@
 {
-  "name": "NSLC Arduino Teacher",
+  "name": "code-teacher",
   "version": "1.0.0",
-  "description": "A web app to help teach Arduino at the NSLC Biotech camp",
-  "productName": "NSLC Arduino Teacher",
+  "description": "A web app to help teach any simple stretches of code",
+  "productName": "Code Teacher",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Isaac Smith <isaachsmith.dev@gmail.com>",
   "private": true,

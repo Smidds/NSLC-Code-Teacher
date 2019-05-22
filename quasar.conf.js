@@ -87,9 +87,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        name: 'NSLC Arduino Teacher',
-        short_name: 'Arduino Teacher',
-        description: 'Web app for teaching Arduino to students the NSLC Biotechnology summer camp.',
+        name: 'Code Teacher',
+        short_name: 'Code Teacher',
+        description: 'Web app for teaching simple pieces of code to students.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

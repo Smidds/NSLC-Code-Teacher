@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
         <q-toolbar-title>
-          Arduino Teacher&#8482;
+          Code Teacher&#8482;
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
