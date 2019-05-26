@@ -1,7 +1,7 @@
 /**
  * Check whether the provided step is within the bounds of [0,0]
  * to the furthestStep.
- * @param {Vuex State} state From Vuex
+ * @param {Object} context Chapter context, only using state
  * @param {Array<number>} step The step array to test
  */
 export function isValidStep ({ state }, step) {
@@ -18,7 +18,7 @@ export function isValidStep ({ state }, step) {
 /**
  * Get the next page after a given step. Will return null if
  * the last page, or the new page array
- * @param {Object} state The chapter state
+ * @param {Object} context The chapter state and commit function
  * @param {Array<number>} step The step to get the next page of
  */
 export async function loadNextPage ({ state, commit }, step) {
@@ -69,7 +69,7 @@ export function loadPrevPage ({ state }, step) {
 /**
  * Attempt to load stepping state. If no step is found in localStorage,
  * default is set to [0, 0]
- * @param {Object} state` Chapter state
+ * @param {Object} context Chapter state
  */
 export function loadStepState ({ state, commit }) {
   let savedFurthest = [
@@ -90,6 +90,14 @@ export function loadStepState ({ state, commit }) {
   }
 
   commit('setSteps', { furthestStep: savedFurthest, currentStep: savedCurrent })
+}
+
+/**
+ * Start over, resetting furthest and current step
+ * @param {Object} context Chapter context, only using commit
+ */
+export function resetSteps ({ commit }) {
+  commit('setSteps', { furthestStep: [0, 0], currentStep: [0, 0] })
 }
 
 /**

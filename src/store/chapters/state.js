@@ -1,50 +1,183 @@
 var state = {
-  'chapters': [{
-    'title': 'The Basics',
-    'pages': [{
-      'title': 'Classic Hello World',
-      'code': `#include <iostream>
-using namespace std;
+  chapters: [{
+    title: 'Declarations and Inclusions',
+    pages: [
+      {
+        title: 'Include Servo',
+        code: `#include <Servo.h>
+Servo ServoGripper;`,
+        instructions: 'Include the Servo library by utilizing the <code class="prettyprint lang-cpp">#include</code> keyword.This will grant us access to a list of Servo commands to tell our Servo what to do. <br /><br /> We will also declare (but not create) a Servo object called ServoGripper. We will create that new Servo later.'
+      },
+      {
+        title: 'Create Macros',
+        instructions: `Use the <code class="prettyprint lang-cpp">#define</code> keyword to create a new macro, which works like a variable, but doesn't use any computer memory to store as it will be replaced when we compile the code. Wherever the compiler sees the macro name, it will just replace the name with the value we specified here. We will be creating the following macros: <ul><li><code class="prettyprint lang-cpp">EMG</code> - Used to rename the Red/White/Black cables as "EMG" to make the code easier to read.</li><li><code class="prettyprint lang-cpp">Degree_Stop_1</code> - Our "closed" degree to stop at, 110 degrees.</li><li><code class="prettyprint lang-cpp">Degree_Stop_2</code> - Our "open" degree to stop at, 70 degrees.</li><li><code class="prettyprint lang-cpp">Close_Threshold</code> - Value that EMG must be above in order to move the gripper to Degree_Stop_1.</li></ul>`,
+        code: `#define EMG A0
+#define Degree_Stop_1 15
+#define Degree_Stop_2 80
+#define Close_Threshold 50`
+      },
+      {
+        title: 'Declare Global Variables',
+        instructions: `In order to store and reuse values in our program, we will define the following variables for the following uses: <ul><li><code class="prettyprint lang-cpp">reading</code> - Defined as an integer array, the variable <code class="prettyprint lang-cpp">reading</code> will be a list that can holding 10 integer readings, which we will read and write to in a later step.</li><li><code class="prettyprint lang-cpp">finalReading</code></li><li><code class="prettyprint lang-cpp">GripPin</code> - An integer with a default value set to 9 to represent our usage of the number 9 pin to transmit integers.</li><li><code class="prettyprint lang-cpp">UpdateTime</code> - The number of milliseconds between updating servo position. A constant integer value that can never be changed within the program, this value will prevent motor burn out.</li></ul>`,
+        code: `int reading[10];
+int finalReading;
+int GripPin = 9; 
+const int UpdateTime = 200;`
+      },
+      {
+        title: 'Summary',
+        instructions: 'Here is all the code you should have completed for this section.',
+        code: `#include <Servo.h> 
+Servo ServoGripper;
 
-int main() 
-{
-    cout << "Hello, World!";
-    return 0;
-}`,
-      'instructions': 'Hello world is a <em>simple introduction</em>. To do it, <strong>just complete the code to the left!</strong>'
-    }, {
-      'title': 'Variables',
-      'code': `int counter = 0;
-String hello = "Hello World!";
-bool isGitaCool = true;
-Servo testServo = new Servo();`,
-      'instructions': 'Variables are a fundamental pillar of programming. Listed in the code block are a few of the core types of variables, as well as an example of what\'s known as an Object, in this case called "Servo". An object is a way of describing a type of thing, like a Cat or a Dog, and making new kinds of those things is triggered with the "new" keyword, like "new Servo()", or "new Dog()". Don\'t worry if this is confusing, you just need to understand the high level of it, that\'s all!'
-    }, {
-      'title': 'Arithmetic Operations',
-      'code': `int four = 2 + 2;
-double oneHalf = 0.25 + 0.25;
-int bigNumber = 1000 * 1000;
-if (2 + 2 == 4) {
-  printf("2 + 2 is 4! Who knew?");
-}`,
-      'instructions': 'In order to do any arthmetic operation, you just need to use the math operators you\'re familiar with, and optionally assign them to another variable, or use the value to perform other work such as check a value or trigger an event.'
-    }, {
-      'title': 'et dolorum non',
-      'code': 'printf("Hello World!");',
-      'instructions': 'Officia ut ea consequatur qui eius maxime. Veritatis dignissimos mollitia mollitia accusamus et. Necessitatibus sed voluptatem aperiam molestiae esse beatae odit perferendis blanditiis.\n \rSapiente corrupti non optio culpa. Repellendus magnam error minima et. Quia facilis culpa nihil quia officia sequi. Aspernatur hic ex omnis tempora est nemo ab aut porro. Quibusdam et rerum iste. Iure autem autem ut ut cum beatae officia incidunt deserunt.\n \rPraesentium nihil eveniet veritatis. Rerum vel qui voluptate recusandae. Qui et laudantium. Quia asperiores minus omnis animi autem. Sit perspiciatis eos porro porro illum porro ut atque soluta. Voluptas nam harum.'
-    }, {
-      'title': 'dolorem iure magnam',
-      'code': 'printf("Hello World!");',
-      'instructions': 'Rerum culpa minima delectus necessitatibus fugit occaecati aut omnis. Eligendi alias blanditiis et et molestiae distinctio dolorem. Minima ut laboriosam voluptatum in. Vel laudantium autem officiis iure sunt dolore debitis dolorum.\n \rSint est at. Corporis aut labore. Quis optio exercitationem aut quasi aut qui. Ad sunt similique hic nulla vero est laboriosam.\n \rVoluptatum et vero. Accusantium corporis sit aspernatur rerum iusto quam itaque delectus ratione. Tempore accusantium nobis libero odio et perspiciatis neque.'
-    }]
+#define EMG A0
+#define Degree_Stop_1 15
+#define Degree_Stop_2 80
+#define Close_Threshold 50
+
+int reading[10];
+int finalReading;
+int GripPin = 9;
+const int UpdateTime = 200;`
+      }
+    ]
   },
   {
-    'title': 'awdad',
-    'pages': [{
-      'title': 'awoawmvaw',
-      'code': 'printf("Hello World!");',
-      'instructions': 'Voluptas facere quam nam aliquid itaque est consequatur. Autem voluptatem fugiat consequuntur velit dolor. Neque eligendi a vitae quam. Velit sit amet asperiores sit porro fuga et consequatur. Iure quidem dicta dolores et. Vel eum eligendi error nihil.\n \rNon inventore tempore repudiandae unde aliquid iure voluptatem ut. Consectetur officiis voluptatem blanditiis dignissimos. Autem fugit ut dicta hic nihil sit et. Quos debitis occaecati optio voluptatem sit error aliquid distinctio eum. Sit est quia corporis animi. Ut commodi at dolore.\n \rConsequatur optio dolorem. Dolor vitae est alias enim. Quasi eos est. Est quaerat enim est corporis quia aliquid ea. Voluptatem fugit est ex laudantium deleniti cumque. Enim qui aut ullam illum.'
-    }]
+    title: 'The Setup Function',
+    pages: [
+      {
+        title: 'Create The Setup Function',
+        instructions: 'The <code class="prettyprint lang-cpp">setup</code> function will contain all code needed to setup the Arduino, and will be called before the <code class="prettyprint lang-cpp">loop</code> function, which we will define later. <br /><br />To begin the setup function, we will open up the serial monitor at 96 BPS with the line <code class="prettyprint lang-cpp">Serial.begin(9600);</code>. Next we will instatiate the Servo variable we declared earlier with the line <code class="prettyprint lang-cpp">ServoGripper.attach(GripPin);</code>. This function call will create a new Servo for us, attached at the given pin (<code class="prettyprint lang-cpp">GripPin = 9</code>, defined earlier), which we will use later.',
+        code: `void setup(){
+  Serial.begin(9600);
+  ServoGripper.attach(GripPin);
+}`
+      }
+    ]
+  },
+  {
+    title: 'The Loop Function',
+    pages: [
+      {
+        title: 'Declaring the Loop Function',
+        instructions: 'The <code class="prettyprint lang-cpp">loop()</code> function is the main loop in the Arduino runtime. After performing the setup in the <code class="prettyprint lang-cpp">setup()</code> function, program execution starts in the <code class="prettyprint lang-cpp">loop()</code> function. The <code class="prettyprint lang-cpp">loop()</code> function will execute, and on completion will run again. We will set a 1000 MS delay (<code class="prettyprint lang-cpp">delay(1000);</code>) at the end of the function to ensure a 1 second wait time before repeating.<br /><br />We will populate the commented code regions in the next steps.',
+        code: `void loop() {
+  // Obtain Ten Readings
+
+  // Determine Final Reading
+
+  // Write Degree Stop
+
+  // Print Debugging Value
+
+  delay(1000);
+}`
+      },
+      {
+        title: 'Obtain Ten Readings',
+        instructions: 'In order to determine the current value of the Servo, we will take 10 readings and determine a final reading in the next step. To take 10 readings, we will make use of the <code class="prettyprint lang-cpp">for( ... ) { ... }</code> loop statement, which will start with the variable <code class="prettyprint lang-cpp">i = 0</code>, and will execute the loop body until <code class="prettyprint lang-cpp">i < 10 == true</code>, which is the condition of the <code class="prettyprint lang-cpp">for</code> loop. At the end of each execution of the <code class="prettyprint lang-cpp">for</code> loop, <code class="prettyprint lang-cpp">i++</code> will run, incrementing the <code class="prettyprint lang-cpp">i</code> variable by one.<br /><br />The loop body will get a value from the function <code class="prettyprint lang-cpp">analogRead(EMG)</code> and assign it to the <code class="prettyprint lang-cpp">reading</code> array at the index, which is specified by the <code class="prettyprint lang-cpp">i</code> variable defined in the <code class="prettyprint lang-cpp">for</code> loop declaration. We then delay for 2 milliseconds, and repeat.',
+        code: `for(int i = 0; i < 10; i++){
+  reading[i] = analogRead(EMG); 
+  delay(2);
+}`
+      },
+      {
+        title: 'Determine Final Reading',
+        instructions: 'In order to determine the value of <code class="prettyprint lang-cpp">finalReading</code> we need to iterate over all ten values in <code class="prettyprint lang-cpp">reading</code> and add them to <code class="prettyprint lang-cpp">finalReading</code> to get a running sum. After the loop has terminated, we take the average over all ten values.',
+        code: `for(int i = 0; i < 10; i++){
+  finalReading += reading[i];
+}
+finalReading /= 10;`
+      },
+      {
+        title: 'Write Degree Stop',
+        instructions: 'The <code class="prettyprint lang-cpp">if { ... } else { .. }</code> statement allows us to run code if the condition is true, otherwise run the <code class="prettyprint lang-cpp">else</code> statement.<br /><br />Here, our condition is <code class="prettyprint lang-cpp">finalReading >= Close_Threshold</code>, which checks our finalReading against the <code class="prettyprint lang-cpp">Close_Threshold</code> macro we defined earlier. If <code class="prettyprint lang-cpp">finalReading</code> is above the threshold, the hand is flexing and so we write <code class="prettyprint lang-cpp">Degree_Stop_1</code> to move the ServoGripper to the closed position. If <code class="prettyprint lang-cpp">finalReading</code> is below the threshold, we move to (or potentially remain at) <code class="prettyprint lang-cpp">Degree_Stop_2</code>.',
+        code: `if (finalReading >= Close_Threshold) {
+  ServoGripper.write (Degree_Stop_1);
+} else {
+  ServoGripper.write(Degree_Stop_2); 
+}`
+      },
+      {
+        title: 'Print Debugging Value',
+        instructions: 'Print out the <code class="prettyprint lang-cpp">finalReading</code> value in the Serial Monitor to check the action for debugging purposes.',
+        code: `Serial.print("Value = ");
+Serial.println(finalReading);`
+      },
+      {
+        title: 'Summary',
+        instructions: 'Here is all the code you should have completed for the section.',
+        code: `void loop(){
+  for(int i = 0; i < 10; i++){
+    reading[i] = analogRead(EMG); 
+    delay(2);
+  }
+
+  for(int i = 0; i < 10; i++){
+    finalReading += reading[i];
+  }
+  finalReading /= 10;
+
+  if (finalReading >= Close_Threshold){
+    ServoGripper.write (Degree_Stop_1);
+  } else {
+    ServoGripper.write(Degree_Stop_2); 
+  } 
+
+  Serial.print("Value = ");
+  Serial.println(finalReading);
+  delay(1000);
+}`
+      }
+    ]
+  },
+  {
+    title: 'In Conclusion',
+    pages: [
+      {
+        title: 'Completed Program',
+        instructions: 'Here is what the final file should look like, after all steps are completed.',
+        code: `#include <Servo.h>
+Servo ServoGripper;
+
+#define EMG A0
+#define Degree_Stop_1 15
+#define Degree_Stop_2 80
+#define Close_Threshold 50
+
+int reading[10];
+int finalReading;
+int GripPin = 9;
+const int UpdateTime = 200;
+
+void setup(){
+  Serial.begin(9600);
+  ServoGripper.attach(GripPin);
+}
+
+void loop(){
+  for(int i = 0; i < 10; i++){
+    reading[i] = analogRead(EMG); 
+    delay(2);
+  }
+  
+  for(int i = 0; i < 10; i++){
+    finalReading += reading[i];
+  }
+  finalReading /= 10;
+  
+  if (finalReading >= Close_Threshold){
+    ServoGripper.write (Degree_Stop_1);
+  } else {
+    ServoGripper.write(Degree_Stop_2); 
+  } 
+
+  Serial.print("Value = ");
+  Serial.println(finalReading);
+  delay(1000);
+}`
+      }
+    ]
   }],
   currentStep: null,
   furthestStep: null

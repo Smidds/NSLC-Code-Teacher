@@ -2,10 +2,14 @@
   <q-layout view="hHh lpR fff">
     <q-header class="bg-primary text-white">
       <q-toolbar>
-        <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        <q-toolbar-title>
-          Code Teacher&#8482;
+        <q-btn flat @click="drawer = !drawer" icon="menu">
+          <div class="menu-btn-label">Code Teacher&#8482;</div>
+        </q-btn>
+        <q-toolbar-title class="text-center">
+          NSLC Biotechnology 2019
         </q-toolbar-title>
+
+        <q-btn flat @click="startOver()" label="Start Over"></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -50,7 +54,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -69,6 +73,14 @@ export default {
     ])
   },
   methods: {
+    ...mapActions('chapters', [
+      'resetSteps'
+    ]),
+    startOver () {
+      this.resetSteps().then(() => {
+        this.$router.push('/step/0/0')
+      })
+    },
     shouldDisable (chpIndex, pgIndex) {
       return chpIndex > this.furthestChapterIndex ||
             (chpIndex === this.furthestChapterIndex && pgIndex > this.furthestPageIndex)
@@ -102,5 +114,10 @@ export default {
 <style lang="scss" scoped>
 .btn-left-pad {
   padding-left: 40px;
+}
+
+.menu-btn-label {
+  margin-top: 3px;
+  margin-left: 10px;
 }
 </style>
