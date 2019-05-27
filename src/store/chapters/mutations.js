@@ -9,6 +9,18 @@ function isStepNewer (oldStep, newStep) {
           oldPage < newPage)
 }
 
+export function incrementQuestionsAnswered (state, step) {
+  let chapterIndex = step[0]
+  let pageIndex = step[1]
+  state.chapters[chapterIndex].pages[pageIndex].quiz.questionsAnswered++
+}
+
+export function setQuestionsAnswered (state, { step, questionsAnswered }) {
+  let chapterIndex = step[0]
+  let pageIndex = step[1]
+  state.chapters[chapterIndex].pages[pageIndex].quiz.questionsAnswered = questionsAnswered
+}
+
 export function setSteps (state, { furthestStep, currentStep }) {
   state.furthestStep = furthestStep
   state.currentStep = currentStep

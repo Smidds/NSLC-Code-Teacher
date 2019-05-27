@@ -6,15 +6,32 @@ var state = {
         title: 'Include Servo',
         code: `#include <Servo.h>
 Servo ServoGripper;`,
-        instructions: 'Include the Servo library by utilizing the <code class="prettyprint lang-cpp">#include</code> keyword.This will grant us access to a list of Servo commands to tell our Servo what to do. <br /><br /> We will also declare (but not create) a Servo object called ServoGripper. We will create that new Servo later.'
+        instructions: 'Include the Servo library by utilizing the <code class="prettyprint lang-cpp">#include</code> keyword.This will grant us access to a list of Servo commands to tell our Servo what to do. <br /><br /> We will also declare (but not create) a Servo object called ServoGripper. We will create that new Servo later.',
+        quiz: {
+          questions: [
+            {
+              instructions: 'To include another library from a file called Math.h, what would you type?',
+              correctAnswers: [
+                '#include <Math.h>'
+              ]
+            },
+            {
+              instructions: 'To declare a variable called SportsCar, of object type Car, what would you type?',
+              correctAnswers: [
+                'Car SportsCar;',
+                'Car SportsCar'
+              ]
+            }
+          ],
+          questionsAnswered: 0
+        }
       },
       {
         title: 'Create Macros',
         instructions: `Use the <code class="prettyprint lang-cpp">#define</code> keyword to create a new macro, which works like a variable, but doesn't use any computer memory to store as it will be replaced when we compile the code. Wherever the compiler sees the macro name, it will just replace the name with the value we specified here. We will be creating the following macros: <ul><li><code class="prettyprint lang-cpp">EMG</code> - Used to rename the Red/White/Black cables as "EMG" to make the code easier to read.</li><li><code class="prettyprint lang-cpp">Degree_Stop_1</code> - Our "closed" degree to stop at, 110 degrees.</li><li><code class="prettyprint lang-cpp">Degree_Stop_2</code> - Our "open" degree to stop at, 70 degrees.</li><li><code class="prettyprint lang-cpp">Close_Threshold</code> - Value that EMG must be above in order to move the gripper to Degree_Stop_1.</li></ul>`,
-        code: `#define EMG A0
-#define Degree_Stop_1 15
-#define Degree_Stop_2 80
-#define Close_Threshold 50`
+        code: `#define MACRO_NAME value
+// An Example
+#define TEST_VALUE 10`
       },
       {
         title: 'Declare Global Variables',

@@ -18,6 +18,11 @@ export function getChapters (state) {
   return state.chapters
 }
 
+export function currentQuiz (state) {
+  let page = currentPage(state)
+  return page.quiz
+}
+
 export function currentPage (state) {
   let chapterIndex = state.currentStep[0]
   let pageIndex = state.currentStep[1]

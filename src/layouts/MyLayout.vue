@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fff">
+  <q-layout view="hHh LpR fff">
     <q-header class="bg-primary text-white">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" icon="menu">
@@ -74,12 +74,13 @@ export default {
   },
   methods: {
     ...mapActions('chapters', [
-      'resetSteps'
+      'resetSteps',
+      'resetQuizzes'
     ]),
-    startOver () {
-      this.resetSteps().then(() => {
-        this.$router.push('/step/0/0')
-      })
+    startOver: async function () {
+      await this.resetSteps()
+      await this.resetQuizzes()
+      this.$router.push('/step/0/0')
     },
     shouldDisable (chpIndex, pgIndex) {
       return chpIndex > this.furthestChapterIndex ||

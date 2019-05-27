@@ -101,6 +101,29 @@ export function resetSteps ({ commit }) {
 }
 
 /**
+ * Reset the number of questions answered for all the quizzes
+ * @param {Object} param0 Chapter context, only using state and commit
+ */
+export function resetQuizzes ({ state, commit }) {
+  for (var cIndex = 0; cIndex < state.chapters.length; cIndex++) {
+    for (var pIndex = 0; pIndex < state.chapters[cIndex].pages.length; pIndex++) {
+      let page = state.chapters[cIndex].pages[pIndex]
+      if (page.quiz && page.quiz.questionsAnswered !== 0) {
+        commit('setQuestionsAnswered', { step: [cIndex, pIndex], questionsAnswered: 0 })
+      }
+    }
+  }
+}
+
+/**
+ * Increase the number of questions answered by one
+ * @param {Object} context Chapter context, using state and commit
+ */
+export function nextQuestion ({ state, commit }) {
+  commit('incrementQuestionsAnswered', state.currentStep)
+}
+
+/**
  * Check if the specified step has a next page, or is at the end
  * @param {Vuex Context} context State context
  * @param {Array<number>} step The step to check if it has a next page
