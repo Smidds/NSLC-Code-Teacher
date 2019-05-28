@@ -135,7 +135,8 @@ export default {
     editor.setFontSize(20)
 
     editor.setOptions({
-      maxLines: Infinity
+      maxLines: Infinity,
+      autoScrollEditorIntoView: true
     })
 
     this.updateEditor()

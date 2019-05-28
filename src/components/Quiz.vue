@@ -6,26 +6,20 @@
       transition-next="slide-left"
       v-model="slide"
       ref="carousel"
-      height="200px"
+      height="auto"
     >
       <q-carousel-slide v-for="(question, qIndex) in currentQuiz.questions" :key="qIndex" :name="qIndex" >
-        <q-card
-          class="shadow-2"
-        >
+        <q-card>
           <q-card-section>
             <div class="text-h6">{{ question.instructions }}</div>
-            <div class="code-editor-wrapper q-pa-xs">
+            <div class="code-editor-wrapper q-pa-sm shadow-2 q-my-lg">
               <editor ref="quizEditor" v-model="quizAnswer" @init="editorInit" lang="c_cpp" theme="tomorrow" height="100%" width="100%" />
             </div>
-            <q-btn
-              push color="green" text-color="black" icon="done" label="Check Answer"
-              @click="checkAnswer()"
-            />
           </q-card-section>
         </q-card>
       </q-carousel-slide>
       <q-carousel-slide :name="currentQuiz.questions.length">
-        <q-card class="shadow-2">
+        <q-card >
           <q-card-section>
             <div class="text-h3 text-green">
               All questions answered correctly!
@@ -34,11 +28,20 @@
         </q-card>
       </q-carousel-slide>
     </q-carousel>
+    <div class="q-pa-sm q-mb-lg">
+      <q-btn
+        v-if="questionsRemain"
+        push :color="incorrectAnswer ? 'red' : 'green'" text-color="white" :icon="incorrectAnswer ? 'error_outlines' : 'done'" :label="incorrectAnswer ? 'Incorrect!' : 'Check Answer'"
+        :class="'float-right animated slow-anim' + (incorrectAnswer ? ' shake': '')"
+        @click="checkAnswer()"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { setTimeout } from 'timers'
 
 export default {
   name: 'Quiz',
@@ -56,12 +59,16 @@ export default {
       set (val) {
         this.nextQuestion()
       }
+    },
+    questionsRemain () {
+      return this.currentQuiz.questions.length > this.currentQuiz.questionsAnswered
     }
   },
   data () {
     return {
-      quizAnswer: '/*  Your Answer Here!  */',
-      quizAnswerPlaceholder: '/*  Your Answer Here!  */'
+      quizAnswer: '',
+      quizAnswerPlaceholder: '',
+      incorrectAnswer: false
     }
   },
   methods: {
@@ -74,7 +81,10 @@ export default {
       require('brace/theme/tomorrow')
 
       editor.setOptions({
-        maxLines: Infinity
+        maxLines: Infinity,
+        minLines: 1,
+        wrap: true,
+        autoScrollEditorIntoView: true
       })
 
       editor.setFontSize(20)
@@ -86,12 +96,21 @@ export default {
       })) {
         this.quizAnswer = this.quizAnswerPlaceholder
         this.$refs.carousel.next()
+        this.incorrectAnswer = false
+      } else {
+        this.incorrectAnswer = true
+
+        setTimeout(() => {
+          this.incorrectAnswer = false
+        }, 1500)
       }
     }
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.slow-anim {
+  animation-duration: 0.5s;
+}
 </style>
