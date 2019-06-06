@@ -1,34 +1,52 @@
 == Declarations and Inclusions ==
 Title: Include Servo
 
-Instructions: Include the Servo library by utilizing the <code class="prettyprint lang-cpp">#include</code> keyword.This will grant us access to a list of Servo commands to tell our Servo what to do. \n\n We will also declare (but not create) a Servo object called ServoGripper. We will create that new Servo later.
+Instructions: Include the Servo library by utilizing the <code class="prettyprint lang-cpp">#include</code> keyword.This will grant us access to a list of Servo commands to tell our Servo what to do. <br /><br /> We will also declare (but not create) a Servo object called ServoGripper. We will create that new Servo later.
 
 Code:
 #include <Servo.h>
 Servo ServoGripper;
 
+Quiz:
+To include another library from a file called Math.h, what would you type?
+    #include <Math.h>
+To declare a variable called SportsCar, of object type Car, what would you type?
+    Car SportsCar;
+    Car SportsCar
+
+
 
 Title: Create Macros
 
-Instructions: Use the <code class="prettyprint lang-cpp">#define</code> keyword to create a new macro, which works like a variable, but doesn't use any computer memory to store as it will be replaced when we compile the code. Wherever the compiler sees the macro name, it will just replace the name with the value we specified here. We will be creating the following macros: <ul><li><code class="prettyprint lang-cpp">EMG</code> - Used to rename the Red/White/Black cables as "EMG" to make the code easier to read.</li><li><code class="prettyprint lang-cpp">Degree_Stop_1</code> - Our "closed" degree to stop at, 110 degrees.</li><li><code class="prettyprint lang-cpp">Degree_Stop_2</code> - Our "open" degree to stop at, 70 degrees.</li><li><code class="prettyprint lang-cpp">Close_Threshold</code> - Value that EMG must be above in order to move the gripper to Degree_Stop_1.</li></ul>
+Instructions: Use the <code class="prettyprint lang-cpp">#define</code> keyword to create a new macro, which works like a variable, but doesn't use any computer memory to store as it will be replaced when we compile the code. Wherever the compiler sees the macro name, it will just replace the name with the value we specified here. We will be creating the following macros: <ul><li><code class="prettyprint lang-cpp">Degree_Stop_1</code> - This is the angle the motor will rotate to when the claw is closed.</li><li><code class="prettyprint lang-cpp">Degree_Stop_2</code> - This is the angle the motor will rotate to when the claw is open.</li><li><code class="prettyprint lang-cpp">Close_Threshold</code> - EMG value that must be picked up by monitor in order to close the hand, by rotating the motor to the angle specific in Degree_Stop_1.</li></ul>
 
 Code:
-#define EMG A0
-#define Degree_Stop_1 15
-#define Degree_Stop_2 80
-#define Close_Threshold 50
+#define Degree_Stop_1 110
+
+Quiz:
+If you wanted to define Degree_Stop_1 as 120 degrees, what would you type?
+    #define Degree_Stop_1 120
+If you wanted to define Degree_Stop_2 as 70 degrees, what would you type?
+    #define Degree_Stop_2 70
+If you wanted to define Close_Threshold as 50, what would you type?
+    #define Close_Threshold 50
+Scenario: When you clench your fist and your claw closes, it does not close all the way. Which macro value would you change to fix that?
+    Degree_Stop_1
+Scenario: When you relax your arm and the claw opens, it does not open wide enough to grab the object you are trying to pick up. Which macro value would you change?
+    Degree_Stop_2 
+Scenario: Even though you are clenching your fist, the claw is not closing. Which macro value would you change?
+    Close_Threshold
 
 
 
 Title: Declare Global Variables
 
-Instructions: In order to store and reuse values in our program, we will define the following variables for the following uses: <ul><li><code class="prettyprint lang-cpp">reading</code> - Defined as an integer array, the variable <code class="prettyprint lang-cpp">reading</code> will be a list that can holding 10 integer readings, which we will read and write to in a later step.</li><li><code class="prettyprint lang-cpp">finalReading</code></li><li><code class="prettyprint lang-cpp">GripPin</code> - An integer with a default value set to 9 to represent our usage of the number 9 pin to transmit integers.</li><li><code class="prettyprint lang-cpp">UpdateTime</code> - The number of milliseconds between updating servo position. A constant integer value that can never be changed within the program, this value will prevent motor burn out.</li></ul>
+Instructions: In order to store and reuse values in our program, we will define the following variables for the following uses: <ul><li><code class="prettyprint lang-cpp">reading</code> - Defined as an integer array, the variable <code class="prettyprint lang-cpp">reading</code> will be a list that can holding 10 integer readings, which we will read and write to in a later step.</li><li><code class="prettyprint lang-cpp">finalReading</code></li><li><code class="prettyprint lang-cpp">GripPin</code> - An integer with default value set to 9. This corresponds with the grip pin position you will use on the Arduino.</li><li><code class="prettyprint lang-cpp">UpdateTime</code> - The number of milliseconds between taking another EMG reading and updating the servo motor position (based on the Degree Stop values we looked at before). This is a constant integer value, which means that it can never be changed within the program. This value should never be below 50ms, to prevent the motor from burning out.</li></ul>
 
 Code:
 int reading[10];
 int finalReading;
 int GripPin = 9; 
-const int UpdateTime = 200;
 
 
 
